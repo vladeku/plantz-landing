@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Plantz — Plant Identifier with Toxicity &amp; Pet Safety</title>
-<meta name="description" content="Point your camera at any plant. Plantz names the species and shows toxicity for cats, dogs & family — plus whether it's edible and how to care for it.">
+<title>Plantz — Plant Identifier: Species, Safety &amp; Health</title>
+<meta name="description" content="Point your camera at any plant. Plantz names the species, checks toxicity for cats, dogs & family, diagnoses plant health, and tells you how to care for it.">
 <meta name="apple-itunes-app" content="app-id=6739429047">
 <meta name="theme-color" content="#F2F7F3">
 <link rel="icon" type="image/png" href="/favicon.png">
@@ -12,8 +12,8 @@
 <link rel="canonical" href="https://getplantz.app/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Plantz">
-<meta property="og:title" content="Plantz — Is it poisonous?">
-<meta property="og:description" content="Snap any plant. Get the species and safety for cats, dogs & family in seconds.">
+<meta property="og:title" content="Plantz — What's this plant? Is it safe?">
+<meta property="og:description" content="Snap any plant. Species, safety for cats, dogs & family, and plant health — in seconds.">
 <meta property="og:url" content="https://getplantz.app/">
 <meta property="og:image" content="https://getplantz.app/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -26,23 +26,22 @@
     --teal-deep:#0A594D;
     --red:#CD4A2F;
     --amber:#B97714;
+    --gold:#EBA51F;
     --card:#FFFFFF;
     --line:#DCE9E2;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
   body{
     font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     background:var(--paper);
     background-image:radial-gradient(90rem 40rem at 85% -10%,rgba(14,124,107,.08),transparent 60%);
     color:var(--ink);
     line-height:1.5;
-    min-height:100svh;
-    display:flex;
-    flex-direction:column;
   }
   a{color:var(--teal-deep)}
   a:focus-visible,button:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:6px}
+  img{max-width:100%}
 
   .shell{width:100%;max-width:1060px;margin:0 auto;padding-inline:24px}
 
@@ -53,24 +52,27 @@
   .top-link{font-size:15px;font-weight:600;text-decoration:none}
   .top-link:hover{text-decoration:underline}
 
-  .hero{flex:1;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-block:48px 40px}
+  .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-block:46px 56px}
   .hero-copy{max-width:520px}
   h1{
-    font-size:clamp(46px,7.2vw,78px);
+    font-size:clamp(42px,6.6vw,72px);
     font-weight:800;
     letter-spacing:-.035em;
-    line-height:1.02;
+    line-height:1.04;
     margin-bottom:20px;
   }
   h1 .danger{color:var(--red)}
-  .lede{font-size:19px;color:var(--muted);max-width:44ch;margin-bottom:28px}
+  .lede{font-size:19px;color:var(--muted);max-width:46ch;margin-bottom:26px}
   .lede strong{color:var(--ink);font-weight:650}
 
   .store{display:inline-block;line-height:0;border-radius:10px}
   .store img{height:56px;width:auto}
-  .store-note{margin-top:10px;font-size:13px;color:var(--muted)}
+  .rating{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:14px;color:var(--muted)}
+  .rating b{color:var(--ink);font-weight:700}
+  .stars{display:inline-flex;gap:1px;color:var(--gold)}
+  .stars svg{width:15px;height:15px}
 
-  .scanline{margin-top:34px;max-width:400px}
+  .scanline{margin-top:30px;max-width:400px}
   .result-card{
     background:var(--card);
     border:1px solid var(--line);
@@ -107,16 +109,46 @@
     padding:9px;
     box-shadow:0 30px 60px rgba(13,43,36,.22),0 4px 14px rgba(13,43,36,.14);
     transform:rotate(-1.6deg);
-    position:relative;
   }
   .phone img{width:100%;height:100%;object-fit:cover;border-radius:46px;display:block}
+  .phone.small{width:min(272px,72vw);border-radius:46px;padding:8px;transform:none}
+  .phone.small img{border-radius:39px}
 
-  .facts{border-top:1px solid var(--line);padding-block:26px 30px}
-  .facts-row{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  .fact{display:flex;gap:11px;align-items:flex-start}
-  .fact svg{flex:none;width:22px;height:22px;color:var(--teal);margin-top:2px}
-  .fact b{display:block;font-size:15px;font-weight:700;letter-spacing:-.01em}
-  .fact span{font-size:14px;color:var(--muted)}
+  .features{border-top:1px solid var(--line)}
+  .feature{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;padding-block:52px}
+  .feature + .feature{border-top:1px solid var(--line)}
+  .feature.flip .f-media{order:-1}
+  .eyebrow{
+    display:inline-block;font-size:12px;font-weight:800;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--teal);margin-bottom:12px;
+  }
+  .feature h2{font-size:clamp(28px,3.6vw,38px);font-weight:800;letter-spacing:-.025em;line-height:1.12;margin-bottom:14px}
+  .feature p{font-size:17px;color:var(--muted);max-width:46ch}
+  .f-media{display:flex;justify-content:center}
+
+  .reviews{border-top:1px solid var(--line);padding-block:56px}
+  .reviews-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+  .reviews h2{font-size:clamp(28px,3.6vw,38px);font-weight:800;letter-spacing:-.025em}
+  .reviews-note{font-size:14px;color:var(--muted)}
+  .reviews-note b{color:var(--ink)}
+  .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .review{
+    background:var(--card);border:1px solid var(--line);border-radius:20px;
+    padding:22px;display:flex;flex-direction:column;gap:12px;
+    box-shadow:0 6px 20px rgba(13,43,36,.05);
+  }
+  .review p{font-size:16px;line-height:1.55}
+  .review p::before{content:"\201C"}
+  .review p::after{content:"\201D"}
+  .review-who{display:flex;align-items:center;gap:12px;margin-top:auto}
+  .review-who img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+  .review-who b{display:block;font-size:15px;font-weight:700}
+  .review-who span{font-size:13px;color:var(--muted)}
+
+  .cta{border-top:1px solid var(--line);padding-block:64px;text-align:center}
+  .cta h2{font-size:clamp(30px,4.4vw,46px);font-weight:800;letter-spacing:-.03em;margin-bottom:10px}
+  .cta p{font-size:17px;color:var(--muted);margin-bottom:26px}
+  .cta .rating{justify-content:center}
 
   footer{border-top:1px solid var(--line);background:rgba(255,255,255,.45)}
   .foot{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px;font-size:14px;color:var(--muted);flex-wrap:wrap}
@@ -127,17 +159,23 @@
   .rise{opacity:0;transform:translateY(14px);animation:rise .6s ease forwards}
   .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}
   @keyframes rise{to{opacity:1;transform:translateY(0)}}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+  .reveal.in{opacity:1;transform:none}
 
   @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
     .rise{opacity:1;transform:none;animation:none}
+    .reveal{opacity:1;transform:none;transition:none}
     .rc-fade{transition:none}
     .phone{transform:none}
   }
   @media (max-width:880px){
-    .hero{grid-template-columns:1fr;gap:40px;padding-block:36px 32px;text-align:left}
+    .hero{grid-template-columns:1fr;gap:40px;padding-block:36px 44px}
     .hero-copy{max-width:none}
     .scanline{max-width:440px}
-    .facts-row{grid-template-columns:1fr;gap:16px}
+    .feature{grid-template-columns:1fr;gap:30px;padding-block:40px}
+    .feature.flip .f-media{order:0}
+    .review-grid{grid-template-columns:1fr}
     .store img{height:52px}
   }
 </style>
@@ -151,50 +189,141 @@
   <a class="top-link" href="https://apps.apple.com/app/id6739429047">Get the app</a>
 </header>
 
-<main class="shell hero">
-  <div class="hero-copy">
-    <h1 class="rise d1">Is it <span class="danger">poisonous?</span></h1>
-    <p class="lede rise d2">Point your camera at any plant. Plantz names the species and shows whether it's safe — <strong>for you, your cat, and your dog</strong> — plus if it's edible and how to keep it alive.</p>
-    <a class="store rise d3" href="https://apps.apple.com/app/id6739429047">
-      <img src="/assets/appstore-badge.svg" alt="Download on the App Store">
-    </a>
-    <div class="scanline rise d4">
-      <div class="result-card rc-fade" id="rc">
-        <div class="leaf-pip" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+<main>
+  <section class="shell hero">
+    <div class="hero-copy">
+      <h1 class="rise d1">What's this plant? <span class="danger">Is it safe?</span></h1>
+      <p class="lede rise d2">Point your camera at any plant. Plantz names the species, checks whether it's safe — <strong>for you, your cat, and your dog</strong> — spots what's wrong with it, and tells you how to keep it thriving.</p>
+      <div class="rise d3">
+        <a class="store" href="https://apps.apple.com/app/id6739429047">
+          <img src="/assets/appstore-badge.svg" alt="Download on the App Store">
+        </a>
+        <div class="rating" aria-label="Rated 4.7 out of 5 on the App Store">
+          <span class="stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+          </span>
+          <span><b>4.7</b> on the App Store</span>
         </div>
-        <div class="rc-names">
-          <div class="rc-name" id="rc-name">Oleander</div>
-          <div class="rc-latin" id="rc-latin">Nerium oleander</div>
+      </div>
+      <div class="scanline rise d4">
+        <div class="result-card rc-fade" id="rc">
+          <div class="leaf-pip" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+          </div>
+          <div class="rc-names">
+            <div class="rc-name" id="rc-name">Oleander</div>
+            <div class="rc-latin" id="rc-latin">Nerium oleander</div>
+          </div>
+          <div class="rc-chip red" id="rc-chip">Toxic</div>
         </div>
-        <div class="rc-chip red" id="rc-chip">Toxic</div>
       </div>
     </div>
-  </div>
 
-  <div class="phone-wrap rise d3">
-    <div class="phone">
-      <img src="/assets/app-scan.jpg" alt="Plantz scanning an oleander flower and flagging it as toxic" fetchpriority="high">
+    <div class="phone-wrap rise d3">
+      <div class="phone">
+        <img src="/assets/app-scan.jpg" alt="Plantz scanning an oleander flower and flagging it as toxic" fetchpriority="high">
+      </div>
     </div>
-  </div>
+  </section>
+
+  <section class="shell features">
+    <div class="feature reveal">
+      <div class="f-copy">
+        <span class="eyebrow">Identify</span>
+        <h2>Any plant, one photo</h2>
+        <p>Trees, flowers, weeds, houseplants — Plantz gives you the common and Latin name in seconds, and tells you whether it's edible.</p>
+      </div>
+      <div class="f-media">
+        <div class="phone small"><img src="/assets/app-02-identify.jpg" alt="Plantz identifying a plant from a photo" loading="lazy"></div>
+      </div>
+    </div>
+
+    <div class="feature flip reveal">
+      <div class="f-copy">
+        <span class="eyebrow">Safety</span>
+        <h2>Know before anyone touches it</h2>
+        <p>Every result shows toxicity for humans, cats and dogs — with the level and symptoms spelled out, never buried.</p>
+      </div>
+      <div class="f-media">
+        <div class="phone small"><img src="/assets/app-03-safety.jpg" alt="Safety and allergens screen showing toxicity for humans, cats and dogs" loading="lazy"></div>
+      </div>
+    </div>
+
+    <div class="feature reveal">
+      <div class="f-copy">
+        <span class="eyebrow">Plant health</span>
+        <h2>A health report for a sick plant</h2>
+        <p>Yellowing tips? Brown edges? Scan your plant to get a health report — problems detected, care mistakes, and how to fix them with watering, light and soil tips.</p>
+      </div>
+      <div class="f-media">
+        <div class="phone small"><img src="/assets/app-04-doctor.jpg" alt="Plant Health Report listing detected problems and care mistakes" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell reviews">
+    <div class="reviews-head reveal">
+      <h2>People are loving Plantz</h2>
+      <span class="reviews-note"><b>4.7</b> on the App Store</span>
+    </div>
+    <div class="review-grid">
+      <figure class="review reveal">
+        <span class="stars" aria-label="5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+        </span>
+        <p>Finally I know what's growing in my yard. Genuinely magical.</p>
+        <figcaption class="review-who">
+          <img src="/assets/av-sarah.jpg" alt="" loading="lazy">
+          <span><b>Sarah</b><span>Gardener</span></span>
+        </figcaption>
+      </figure>
+      <figure class="review reveal">
+        <span class="stars" aria-label="5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+        </span>
+        <p>It flagged the lily in our bouquet as toxic to cats. Moved it the same day.</p>
+        <figcaption class="review-who">
+          <img src="/assets/av-marcus.jpg" alt="" loading="lazy">
+          <span><b>Marcus</b><span>Cat owner</span></span>
+        </figcaption>
+      </figure>
+      <figure class="review reveal">
+        <span class="stars" aria-label="5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+        </span>
+        <p>Care tips actually saved my dying fiddle-leaf fig.</p>
+        <figcaption class="review-who">
+          <img src="/assets/av-linda.jpg" alt="" loading="lazy">
+          <span><b>Linda</b><span>Plant parent</span></span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="shell cta reveal">
+    <h2>The next plant you meet — know it.</h2>
+    <p>Species, safety, health and care. One photo away.</p>
+    <a class="store" href="https://apps.apple.com/app/id6739429047">
+      <img src="/assets/appstore-badge.svg" alt="Download on the App Store" loading="lazy">
+    </a>
+  </section>
 </main>
-
-<section class="shell facts">
-  <div class="facts-row">
-    <div class="fact">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <div><b>Species in seconds</b><span>Common and Latin name from one photo.</span></div>
-    </div>
-    <div class="fact">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v5c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/></svg>
-      <div><b>Safety up front</b><span>Toxicity for cats, dogs &amp; family on every result.</span></div>
-    </div>
-    <div class="fact">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c-4 0-7-3-7-7 0-5 7-11 7-11s7 6 7 11c0 4-3 7-7 7Z"/></svg>
-      <div><b>Edible or not, plus care</b><span>Edibility, watering, light and soil basics.</span></div>
-    </div>
-  </div>
-</section>
 
 <footer>
   <div class="shell foot">
@@ -212,7 +341,8 @@
     {name:"Monstera",latin:"Monstera deliciosa",chip:"Toxic to pets",cls:"amber"},
     {name:"Basil",latin:"Ocimum basilicum",chip:"Edible",cls:"teal"}
   ];
-  if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+  var reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(!reduced){
     var i=0,card=document.getElementById("rc");
     setInterval(function(){
       card.classList.add("rc-dim");
@@ -227,6 +357,17 @@
         card.classList.remove("rc-dim");
       },450);
     },3200);
+  }
+  var revs=document.querySelectorAll(".reveal");
+  if(reduced||!("IntersectionObserver" in window)){
+    revs.forEach(function(el){el.classList.add("in")});
+  }else{
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}
+      });
+    },{rootMargin:"0px 0px -8% 0px"});
+    revs.forEach(function(el){io.observe(el)});
   }
 </script>
 </body>
