@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Plantz — Plant Identifier: Species, Safety &amp; Health</title>
 <meta name="description" content="Point your camera at any plant. Plantz names the species, checks toxicity for cats, dogs & family, diagnoses plant health, and tells you how to care for it.">
 <meta name="apple-itunes-app" content="app-id=6739429047">
@@ -12,7 +12,7 @@
 <link rel="canonical" href="https://getplantz.app/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Plantz">
-<meta property="og:title" content="Plantz — What's this plant? Is it safe?">
+<meta property="og:title" content="Plantz — What’s this plant? Is it safe?">
 <meta property="og:description" content="Snap any plant. Species, safety for cats, dogs & family, and plant health — in seconds.">
 <meta property="og:url" content="https://getplantz.app/">
 <meta property="og:image" content="https://getplantz.app/assets/og.jpg">
@@ -39,9 +39,10 @@
     color:var(--ink);
     line-height:1.5;
   }
-  a{color:var(--teal-deep)}
+  a{color:var(--teal-deep);touch-action:manipulation;-webkit-tap-highlight-color:rgba(14,124,107,.15)}
   a:focus-visible,button:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:6px}
-  img{max-width:100%}
+  img{max-width:100%;height:auto}
+  h1,h2{text-wrap:balance}
 
   .shell{width:100%;max-width:1060px;margin:0 auto;padding-inline:24px}
 
@@ -65,7 +66,8 @@
   .lede{font-size:19px;color:var(--muted);max-width:46ch;margin-bottom:26px}
   .lede strong{color:var(--ink);font-weight:650}
 
-  .store{display:inline-block;line-height:0;border-radius:10px}
+  .store{display:inline-block;line-height:0;border-radius:10px;transition:opacity .2s ease}
+  .store:hover{opacity:.85}
   .store img{height:56px;width:auto}
   .rating{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:14px;color:var(--muted)}
   .rating b{color:var(--ink);font-weight:700}
@@ -150,6 +152,31 @@
   .cta p{font-size:17px;color:var(--muted);margin-bottom:26px}
   .cta .rating{justify-content:center}
 
+  .cta-note{font-size:13px;color:var(--muted);margin-top:12px}
+
+  .appbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:50;
+    display:flex;align-items:center;gap:12px;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.92);
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+    border-top:1px solid var(--line);
+    transform:translateY(110%);transition:transform .35s ease;
+  }
+  .appbar.show{transform:translateY(0)}
+  .appbar>img{width:36px;height:36px;border-radius:8px}
+  .appbar-name{flex:1;min-width:0;line-height:1.25}
+  .appbar-name b{display:block;font-size:15px;font-weight:750}
+  .appbar-rating{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--muted)}
+  .appbar-rating svg{width:12px;height:12px;color:var(--gold)}
+  .appbar .get{
+    flex:none;background:var(--teal);color:#fff;text-decoration:none;
+    font-size:15px;font-weight:800;letter-spacing:.01em;
+    padding:12px 24px;border-radius:999px;
+  }
+  .appbar .get:hover{background:var(--teal-deep)}
+  @media (min-width:881px){.appbar{display:none}}
+
   footer{border-top:1px solid var(--line);background:rgba(255,255,255,.45)}
   .foot{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px;font-size:14px;color:var(--muted);flex-wrap:wrap}
   .foot nav{display:flex;gap:20px}
@@ -168,6 +195,7 @@
     .reveal{opacity:1;transform:none;transition:none}
     .rc-fade{transition:none}
     .phone{transform:none}
+    .appbar,.store{transition:none}
   }
   @media (max-width:880px){
     .hero{grid-template-columns:1fr;gap:40px;padding-block:36px 44px}
@@ -192,11 +220,11 @@
 <main>
   <section class="shell hero">
     <div class="hero-copy">
-      <h1 class="rise d1">What's this plant? <span class="danger">Is it safe?</span></h1>
-      <p class="lede rise d2">Point your camera at any plant. Plantz names the species, checks whether it's safe — <strong>for you, your cat, and your dog</strong> — spots what's wrong with it, and tells you how to keep it thriving.</p>
+      <h1 class="rise d1">What’s this plant? <span class="danger">Is it safe?</span></h1>
+      <p class="lede rise d2">Plantz names any plant from one photo, checks if it’s safe — <strong>for you, your cat, and your dog</strong> — and spots what’s wrong when it’s sick.</p>
       <div class="rise d3">
         <a class="store" href="https://apps.apple.com/app/id6739429047">
-          <img src="/assets/appstore-badge.svg" alt="Download on the App Store">
+          <img src="/assets/appstore-badge.svg" alt="Download on the App Store" width="168" height="56">
         </a>
         <div class="rating" aria-label="Rated 4.7 out of 5 on the App Store">
           <span class="stars" aria-hidden="true">
@@ -225,7 +253,7 @@
 
     <div class="phone-wrap rise d3">
       <div class="phone">
-        <img src="/assets/app-scan.jpg" alt="Plantz scanning an oleander flower and flagging it as toxic" fetchpriority="high">
+        <img src="/assets/app-scan.jpg" alt="Plantz scanning an oleander flower and flagging it as toxic" width="640" height="1390" fetchpriority="high">
       </div>
     </div>
   </section>
@@ -235,10 +263,10 @@
       <div class="f-copy">
         <span class="eyebrow">Identify</span>
         <h2>Any plant, one photo</h2>
-        <p>Trees, flowers, weeds, houseplants — Plantz gives you the common and Latin name in seconds, and tells you whether it's edible.</p>
+        <p>Trees, flowers, weeds, houseplants — Plantz gives you the common and Latin name in seconds, and tells you whether it’s edible.</p>
       </div>
       <div class="f-media">
-        <div class="phone small"><img src="/assets/app-02-identify.jpg" alt="Plantz identifying a plant from a photo" loading="lazy"></div>
+        <div class="phone small"><img src="/assets/app-02-identify.jpg" alt="Plantz identifying a plant from a photo" width="640" height="1390" loading="lazy"></div>
       </div>
     </div>
 
@@ -249,7 +277,7 @@
         <p>Every result shows toxicity for humans, cats and dogs — with the level and symptoms spelled out, never buried.</p>
       </div>
       <div class="f-media">
-        <div class="phone small"><img src="/assets/app-03-safety.jpg" alt="Safety and allergens screen showing toxicity for humans, cats and dogs" loading="lazy"></div>
+        <div class="phone small"><img src="/assets/app-03-safety.jpg" alt="Safety and allergens screen showing toxicity for humans, cats and dogs" width="640" height="1390" loading="lazy"></div>
       </div>
     </div>
 
@@ -260,7 +288,7 @@
         <p>Yellowing tips? Brown edges? Scan your plant to get a health report — problems detected, care mistakes, and how to fix them with watering, light and soil tips.</p>
       </div>
       <div class="f-media">
-        <div class="phone small"><img src="/assets/app-04-doctor.jpg" alt="Plant Health Report listing detected problems and care mistakes" loading="lazy"></div>
+        <div class="phone small"><img src="/assets/app-04-doctor.jpg" alt="Plant Health Report listing detected problems and care mistakes" width="640" height="1390" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -279,9 +307,9 @@
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
         </span>
-        <p>Finally I know what's growing in my yard. Genuinely magical.</p>
+        <p>Finally I know what’s growing in my yard. Genuinely magical.</p>
         <figcaption class="review-who">
-          <img src="/assets/av-sarah.jpg" alt="" loading="lazy">
+          <img src="/assets/av-sarah.jpg" alt="" width="44" height="44" loading="lazy">
           <span><b>Sarah</b><span>Gardener</span></span>
         </figcaption>
       </figure>
@@ -295,7 +323,7 @@
         </span>
         <p>It flagged the lily in our bouquet as toxic to cats. Moved it the same day.</p>
         <figcaption class="review-who">
-          <img src="/assets/av-marcus.jpg" alt="" loading="lazy">
+          <img src="/assets/av-marcus.jpg" alt="" width="44" height="44" loading="lazy">
           <span><b>Marcus</b><span>Cat owner</span></span>
         </figcaption>
       </figure>
@@ -309,7 +337,7 @@
         </span>
         <p>Care tips actually saved my dying fiddle-leaf fig.</p>
         <figcaption class="review-who">
-          <img src="/assets/av-linda.jpg" alt="" loading="lazy">
+          <img src="/assets/av-linda.jpg" alt="" width="44" height="44" loading="lazy">
           <span><b>Linda</b><span>Plant parent</span></span>
         </figcaption>
       </figure>
@@ -320,10 +348,23 @@
     <h2>The next plant you meet — know it.</h2>
     <p>Species, safety, health and care. One photo away.</p>
     <a class="store" href="https://apps.apple.com/app/id6739429047">
-      <img src="/assets/appstore-badge.svg" alt="Download on the App Store" loading="lazy">
+      <img src="/assets/appstore-badge.svg" alt="Download on the App Store" width="168" height="56" loading="lazy">
     </a>
+    <p class="cta-note">Free to download</p>
   </section>
 </main>
+
+<div class="appbar" id="appbar">
+  <img src="/assets/icon-512.png" alt="" width="36" height="36">
+  <div class="appbar-name">
+    <b>Plantz</b>
+    <span class="appbar-rating">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+      4.7 · Free
+    </span>
+  </div>
+  <a class="get" href="https://apps.apple.com/app/id6739429047">Get</a>
+</div>
 
 <footer>
   <div class="shell foot">
@@ -357,6 +398,12 @@
         card.classList.remove("rc-dim");
       },450);
     },3200);
+  }
+  var bar=document.getElementById("appbar"),hero=document.querySelector(".hero");
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(function(entries){
+      bar.classList.toggle("show",!entries[0].isIntersecting);
+    },{rootMargin:"-56px 0px 0px 0px"}).observe(hero);
   }
   var revs=document.querySelectorAll(".reveal");
   if(reduced||!("IntersectionObserver" in window)){
