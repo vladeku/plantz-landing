@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Plantz: Plant Identifier for Species, Safety &amp; Health</title>
+<title>Plantz: Plant, Tree &amp; Weed ID</title>
 <meta name="description" content="Point your camera at any plant. Plantz names the species, checks toxicity for cats, dogs & family, diagnoses plant health, and tells you how to care for it.">
 <meta name="apple-itunes-app" content="app-id=6739429047">
 <meta name="theme-color" content="#F2F7F3">
@@ -406,6 +406,19 @@
         card.classList.remove("rc-dim");
       },450);
     },3200);
+  }
+  if(/iPhone|iPad|iPod/.test(navigator.userAgent)){
+    document.querySelectorAll('a[href^="https://apps.apple.com"]').forEach(function(a){
+      a.addEventListener("click",function(e){
+        e.preventDefault();
+        var url=a.href;
+        var t=setTimeout(function(){window.location.href=url},1500);
+        var cancel=function(){clearTimeout(t)};
+        document.addEventListener("visibilitychange",function(){if(document.hidden)cancel()},{once:true});
+        window.addEventListener("pagehide",cancel,{once:true});
+        window.location.href=url.replace(/^https:/,"itms-appss:");
+      });
+    });
   }
   var bar=document.getElementById("appbar"),hero=document.querySelector(".hero");
   if("IntersectionObserver" in window){
