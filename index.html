@@ -105,18 +105,9 @@
   .rc-dim{opacity:0}
 
   .phone-wrap{display:flex;justify-content:center}
-  .phone{
-    width:min(320px,78vw);
-    aspect-ratio:1320/2868;
-    border-radius:43px;
-    background:#101614;
-    padding:9px;
-    box-shadow:0 30px 60px rgba(13,43,36,.22),0 4px 14px rgba(13,43,36,.14);
-    transform:rotate(-1.6deg);
-  }
-  .phone img{width:100%;height:100%;object-fit:cover;border-radius:34px;display:block}
-  .phone.small{width:min(272px,72vw);border-radius:38px;padding:8px;transform:none}
-  .phone.small img{border-radius:30px}
+  .device{display:block;height:auto;filter:drop-shadow(0 24px 44px rgba(13,43,36,.28))}
+  .hero-device{width:min(330px,80vw);transform:rotate(-1.6deg)}
+  .feature-device{width:min(284px,74vw)}
 
   .features{border-top:1px solid var(--line)}
   .feature{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;padding-block:52px}
@@ -195,7 +186,7 @@
     .rise{opacity:1;transform:none;animation:none}
     .reveal{opacity:1;transform:none;transition:none}
     .rc-fade{transition:none}
-    .phone{transform:none}
+    .hero-device{transform:none}
     .appbar,.store{transition:none}
   }
   @media (max-width:880px){
@@ -253,9 +244,7 @@
     </div>
 
     <div class="phone-wrap rise d3">
-      <div class="phone">
-        <img src="/assets/app-scan.jpg" alt="Plantz scanning an oleander flower and flagging it as toxic" width="640" height="1390" fetchpriority="high">
-      </div>
+      <img class="device hero-device" src="/assets/framed-01.webp" alt="Plantz scanning an oleander flower and flagging it as toxic" width="720" height="1492" fetchpriority="high">
     </div>
   </section>
 
@@ -267,7 +256,7 @@
         <p>From trees and flowers to weeds and houseplants, Plantz gives you the common and Latin name in seconds, and tells you whether it’s edible.</p>
       </div>
       <div class="f-media">
-        <div class="phone small"><img src="/assets/app-02-identify.jpg" alt="Plantz identifying a plant from a photo" width="640" height="1390" loading="lazy"></div>
+        <img class="device feature-device" src="/assets/framed-02.webp" alt="Plantz identifying a plant from a photo" width="720" height="1492" loading="lazy">
       </div>
     </div>
 
@@ -278,7 +267,7 @@
         <p>Every result shows toxicity for humans, cats and dogs, with the level and symptoms spelled out, never buried.</p>
       </div>
       <div class="f-media">
-        <div class="phone small"><img src="/assets/app-03-safety.jpg" alt="Safety and allergens screen showing toxicity for humans, cats and dogs" width="640" height="1390" loading="lazy"></div>
+        <img class="device feature-device" src="/assets/framed-03.webp" alt="Safety and allergens screen showing toxicity for humans, cats and dogs" width="720" height="1492" loading="lazy">
       </div>
     </div>
 
@@ -289,7 +278,7 @@
         <p>Yellowing tips? Brown edges? Scan your plant to get a health report: problems detected, care mistakes, and how to fix them with watering, light and soil tips.</p>
       </div>
       <div class="f-media">
-        <div class="phone small"><img src="/assets/app-04-doctor.jpg" alt="Plant Health Report listing detected problems and care mistakes" width="640" height="1390" loading="lazy"></div>
+        <img class="device feature-device" src="/assets/framed-04.webp" alt="Plant Health Report listing detected problems and care mistakes" width="720" height="1492" loading="lazy">
       </div>
     </div>
   </section>
