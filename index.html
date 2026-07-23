@@ -124,8 +124,9 @@
   .reviews{border-top:1px solid var(--line);padding-block:56px}
   .reviews-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:28px}
   .reviews h2{font-size:clamp(28px,3.6vw,38px);font-weight:800;letter-spacing:-.025em}
-  .reviews-note{font-size:14px;color:var(--muted)}
+  .reviews-note{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted)}
   .reviews-note b{color:var(--ink)}
+  .reviews-note .stars svg{width:14px;height:14px}
   .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .review{
     background:var(--card);border:1px solid var(--line);border-radius:20px;
@@ -229,7 +230,7 @@
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
           </span>
-          <span>Rated <b>4.7 out of 5</b> on the App&nbsp;Store</span>
+          <span><b>4.7</b> on App&nbsp;Store</span>
         </div>
       </div>
       <div class="scanline rise d4">
@@ -289,7 +290,16 @@
   <section class="shell reviews">
     <div class="reviews-head reveal">
       <h2>People are loving Plantz</h2>
-      <span class="reviews-note">Rated <b>4.7 out of 5</b> on the App&nbsp;Store</span>
+      <span class="reviews-note" aria-label="Rated 4.7 out of 5 on the App Store">
+        <span class="stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+        </span>
+        <b>4.7</b> on App&nbsp;Store
+      </span>
     </div>
     <div class="review-grid">
       <figure class="review reveal">
