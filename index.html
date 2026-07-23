@@ -171,6 +171,28 @@
   .appbar-iap{font-size:9px;color:#8a8a8e;letter-spacing:.01em}
   @media (min-width:881px){.appbar{display:none}}
 
+  .tt-veil{
+    position:fixed;inset:0;z-index:99;display:none;
+    align-items:flex-end;justify-content:center;
+    background:rgba(13,43,36,.45);
+    padding:16px 16px calc(24px + env(safe-area-inset-bottom));
+  }
+  .tt-veil.open{display:flex}
+  .tt-sheet{
+    background:#fff;border-radius:22px;max-width:420px;width:100%;
+    padding:24px 22px;text-align:center;
+    box-shadow:0 20px 50px rgba(13,43,36,.3);
+  }
+  .tt-sheet h3{font-size:19px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+  .tt-sheet p{font-size:15px;color:var(--muted);line-height:1.5;margin-bottom:18px}
+  .tt-sheet p b{color:var(--ink)}
+  .tt-ok{
+    display:inline-block;background:var(--teal);color:#fff;text-decoration:none;border:0;
+    font-size:15px;font-weight:750;padding:12px 28px;border-radius:999px;cursor:pointer;
+    font-family:inherit;
+  }
+  .tt-ok:hover{background:var(--teal-deep)}
+
   footer{border-top:1px solid var(--line);background:rgba(255,255,255,.45)}
   .foot{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px;font-size:14px;color:var(--muted);flex-wrap:wrap}
   .foot nav{display:flex;gap:20px}
@@ -374,6 +396,14 @@
   </div>
 </div>
 
+<div class="tt-veil" id="ttveil" role="dialog" aria-modal="true" aria-labelledby="tt-title">
+  <div class="tt-sheet">
+    <h3 id="tt-title">One more step</h3>
+    <p>TikTok doesn’t open App Store links. Tap <b>⋯</b> in the top corner and choose <b>Open in browser</b>, then download Plantz there.</p>
+    <button class="tt-ok" id="ttok" type="button">Got it</button>
+  </div>
+</div>
+
 <footer>
   <div class="shell foot">
     <span>© 2026 Plantz</span>
@@ -407,7 +437,18 @@
       },450);
     },3200);
   }
-  if(/iPhone|iPad|iPod/.test(navigator.userAgent)){
+  var inTikTok=/musical_ly|Bytedance|TikTok/i.test(navigator.userAgent)||location.search.indexOf("tt=1")>-1;
+  var veil=document.getElementById("ttveil");
+  document.getElementById("ttok").addEventListener("click",function(){veil.classList.remove("open")});
+  veil.addEventListener("click",function(e){if(e.target===veil)veil.classList.remove("open")});
+  if(inTikTok){
+    document.querySelectorAll('a[href^="https://apps.apple.com"]').forEach(function(a){
+      a.addEventListener("click",function(e){
+        e.preventDefault();
+        veil.classList.add("open");
+      });
+    });
+  }else if(/iPhone|iPad|iPod/.test(navigator.userAgent)){
     document.querySelectorAll('a[href^="https://apps.apple.com"]').forEach(function(a){
       a.addEventListener("click",function(e){
         e.preventDefault();
