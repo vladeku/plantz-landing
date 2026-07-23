@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plantz — Plant Identifier with Toxicity &amp; Pet Safety</title>
+<meta name="description" content="Point your camera at any plant. Plantz names the species and shows toxicity for cats, dogs & family — plus whether it's edible and how to care for it.">
+<meta name="apple-itunes-app" content="app-id=6739429047">
+<meta name="theme-color" content="#F2F7F3">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://getplantz.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Plantz">
+<meta property="og:title" content="Plantz — Is it poisonous?">
+<meta property="og:description" content="Snap any plant. Get the species and safety for cats, dogs & family in seconds.">
+<meta property="og:url" content="https://getplantz.app/">
+<meta property="og:image" content="https://getplantz.app/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    --paper:#F2F7F3;
+    --ink:#0D2B24;
+    --muted:#4F7268;
+    --teal:#0E7C6B;
+    --teal-deep:#0A594D;
+    --red:#CD4A2F;
+    --amber:#B97714;
+    --card:#FFFFFF;
+    --line:#DCE9E2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--paper);
+    background-image:radial-gradient(90rem 40rem at 85% -10%,rgba(14,124,107,.08),transparent 60%);
+    color:var(--ink);
+    line-height:1.5;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+  }
+  a{color:var(--teal-deep)}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:6px}
+
+  .shell{width:100%;max-width:1060px;margin:0 auto;padding:0 24px}
+
+  .top{display:flex;align-items:center;justify-content:space-between;padding-top:22px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+  .brand img{width:38px;height:38px;border-radius:9px;box-shadow:0 1px 4px rgba(13,43,36,.14)}
+  .brand span{font-size:20px;font-weight:800;letter-spacing:-.02em}
+  .top-link{font-size:15px;font-weight:600;text-decoration:none}
+  .top-link:hover{text-decoration:underline}
+
+  .hero{flex:1;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding:48px 0 40px}
+  .hero-copy{max-width:520px}
+  h1{
+    font-size:clamp(46px,7.2vw,78px);
+    font-weight:800;
+    letter-spacing:-.035em;
+    line-height:1.02;
+    margin-bottom:20px;
+  }
+  h1 .danger{color:var(--red)}
+  .lede{font-size:19px;color:var(--muted);max-width:44ch;margin-bottom:28px}
+  .lede strong{color:var(--ink);font-weight:650}
+
+  .store{display:inline-block;line-height:0;border-radius:10px}
+  .store img{height:56px;width:auto}
+  .store-note{margin-top:10px;font-size:13px;color:var(--muted)}
+
+  .scanline{margin-top:34px;max-width:400px}
+  .result-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:14px 16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 10px 30px rgba(13,43,36,.08);
+  }
+  .leaf-pip{
+    flex:none;width:40px;height:40px;border-radius:50%;
+    background:#E3F0E9;display:grid;place-items:center;color:var(--teal);
+  }
+  .rc-names{flex:1;min-width:0}
+  .rc-name{font-size:17px;font-weight:750;letter-spacing:-.01em}
+  .rc-latin{font-size:14px;color:var(--muted);font-style:italic}
+  .rc-chip{
+    flex:none;font-size:13px;font-weight:750;letter-spacing:.02em;
+    color:#fff;padding:7px 13px;border-radius:999px;
+  }
+  .rc-chip.red{background:var(--red)}
+  .rc-chip.amber{background:var(--amber)}
+  .rc-chip.teal{background:var(--teal)}
+  .rc-fade{transition:opacity .45s ease}
+  .rc-dim{opacity:0}
+
+  .phone-wrap{display:flex;justify-content:center}
+  .phone{
+    width:min(320px,78vw);
+    aspect-ratio:1320/2868;
+    border-radius:54px;
+    background:#101614;
+    padding:9px;
+    box-shadow:0 30px 60px rgba(13,43,36,.22),0 4px 14px rgba(13,43,36,.14);
+    transform:rotate(-1.6deg);
+    position:relative;
+  }
+  .phone img{width:100%;height:100%;object-fit:cover;border-radius:46px;display:block}
+
+  .facts{border-top:1px solid var(--line);padding:26px 0 30px}
+  .facts-row{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .fact{display:flex;gap:11px;align-items:flex-start}
+  .fact svg{flex:none;width:22px;height:22px;color:var(--teal);margin-top:2px}
+  .fact b{display:block;font-size:15px;font-weight:700;letter-spacing:-.01em}
+  .fact span{font-size:14px;color:var(--muted)}
+
+  footer{border-top:1px solid var(--line);background:rgba(255,255,255,.45)}
+  .foot{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;font-size:14px;color:var(--muted);flex-wrap:wrap}
+  .foot nav{display:flex;gap:20px}
+  .foot a{text-decoration:none}
+  .foot a:hover{text-decoration:underline}
+
+  .rise{opacity:0;transform:translateY(14px);animation:rise .6s ease forwards}
+  .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}
+  @keyframes rise{to{opacity:1;transform:translateY(0)}}
+
+  @media (prefers-reduced-motion:reduce){
+    .rise{opacity:1;transform:none;animation:none}
+    .rc-fade{transition:none}
+    .phone{transform:none}
+  }
+  @media (max-width:880px){
+    .hero{grid-template-columns:1fr;gap:40px;padding:36px 0 32px;text-align:left}
+    .hero-copy{max-width:none}
+    .scanline{max-width:440px}
+    .facts-row{grid-template-columns:1fr;gap:16px}
+    .store img{height:52px}
+  }
+</style>
+</head>
+<body>
+<header class="shell top">
+  <a class="brand" href="/">
+    <img src="/assets/icon-512.png" alt="" width="38" height="38">
+    <span>Plantz</span>
+  </a>
+  <a class="top-link" href="https://apps.apple.com/app/id6739429047">Get the app</a>
+</header>
+
+<main class="shell hero">
+  <div class="hero-copy">
+    <h1 class="rise d1">Is it <span class="danger">poisonous?</span></h1>
+    <p class="lede rise d2">Point your camera at any plant. Plantz names the species and shows whether it's safe — <strong>for you, your cat, and your dog</strong> — plus if it's edible and how to keep it alive.</p>
+    <a class="store rise d3" href="https://apps.apple.com/app/id6739429047">
+      <img src="/assets/appstore-badge.svg" alt="Download on the App Store">
+    </a>
+    <div class="scanline rise d4">
+      <div class="result-card rc-fade" id="rc">
+        <div class="leaf-pip" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+        </div>
+        <div class="rc-names">
+          <div class="rc-name" id="rc-name">Oleander</div>
+          <div class="rc-latin" id="rc-latin">Nerium oleander</div>
+        </div>
+        <div class="rc-chip red" id="rc-chip">Toxic</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phone-wrap rise d3">
+    <div class="phone">
+      <img src="/assets/app-scan.jpg" alt="Plantz scanning an oleander flower and flagging it as toxic" fetchpriority="high">
+    </div>
+  </div>
+</main>
+
+<section class="shell facts">
+  <div class="facts-row">
+    <div class="fact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <div><b>Species in seconds</b><span>Common and Latin name from one photo.</span></div>
+    </div>
+    <div class="fact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v5c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/></svg>
+      <div><b>Safety up front</b><span>Toxicity for cats, dogs &amp; family on every result.</span></div>
+    </div>
+    <div class="fact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c-4 0-7-3-7-7 0-5 7-11 7-11s7 6 7 11c0 4-3 7-7 7Z"/></svg>
+      <div><b>Edible or not, plus care</b><span>Edibility, watering, light and soil basics.</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="shell foot">
+    <span>© 2026 Plantz</span>
+    <nav>
+      <a href="https://www.tiktok.com/@plantz.app">TikTok</a>
+      <a href="https://sites.google.com/view/plantz-privacy-policy">Privacy Policy</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  var states=[
+    {name:"Oleander",latin:"Nerium oleander",chip:"Toxic",cls:"red"},
+    {name:"Monstera",latin:"Monstera deliciosa",chip:"Toxic to pets",cls:"amber"},
+    {name:"Basil",latin:"Ocimum basilicum",chip:"Edible",cls:"teal"}
+  ];
+  if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+    var i=0,card=document.getElementById("rc");
+    setInterval(function(){
+      card.classList.add("rc-dim");
+      setTimeout(function(){
+        i=(i+1)%states.length;
+        var s=states[i];
+        document.getElementById("rc-name").textContent=s.name;
+        document.getElementById("rc-latin").textContent=s.latin;
+        var chip=document.getElementById("rc-chip");
+        chip.textContent=s.chip;
+        chip.className="rc-chip "+s.cls;
+        card.classList.remove("rc-dim");
+      },450);
+    },3200);
+  }
+</script>
+</body>
+</html>
