@@ -150,23 +150,26 @@
     position:fixed;left:0;right:0;bottom:0;z-index:50;
     display:flex;align-items:center;gap:12px;
     padding:10px 16px calc(10px + env(safe-area-inset-bottom));
-    background:rgba(255,255,255,.92);
+    background:rgba(255,255,255,.94);
     -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
     border-top:1px solid var(--line);
     transform:translateY(110%);transition:transform .35s ease;
   }
   .appbar.show{transform:translateY(0)}
-  .appbar>img{width:36px;height:36px;border-radius:8px}
-  .appbar-name{flex:1;min-width:0;line-height:1.25}
-  .appbar-name b{display:block;font-size:15px;font-weight:750}
-  .appbar-rating{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--muted)}
-  .appbar-rating svg{width:12px;height:12px;color:var(--gold)}
+  .appbar>img{width:48px;height:48px;border-radius:11px;box-shadow:0 0 0 1px rgba(13,43,36,.08)}
+  .appbar-name{flex:1;min-width:0;line-height:1.3}
+  .appbar-name b{display:block;font-size:15px;font-weight:650;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#111}
+  .appbar-sub{display:block;font-size:12px;color:#8a8a8e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .appbar-rating{display:inline-flex;align-items:center;gap:3px;font-size:12px;color:#8a8a8e;margin-top:1px}
+  .appbar-rating svg{width:11px;height:11px;color:#ff9f0a}
+  .appbar-cta{flex:none;display:flex;flex-direction:column;align-items:center;gap:3px}
   .appbar .get{
-    flex:none;background:var(--teal);color:#fff;text-decoration:none;
-    font-size:15px;font-weight:800;letter-spacing:.01em;
-    padding:12px 24px;border-radius:999px;
+    background:#EEF0F4;color:#007AFF;text-decoration:none;
+    font-size:15px;font-weight:750;letter-spacing:.01em;
+    padding:8px 26px;border-radius:999px;
   }
-  .appbar .get:hover{background:var(--teal-deep)}
+  .appbar .get:hover{background:#E3E7ED}
+  .appbar-iap{font-size:9px;color:#8a8a8e;letter-spacing:.01em}
   @media (min-width:881px){.appbar{display:none}}
 
   footer{border-top:1px solid var(--line);background:rgba(255,255,255,.45)}
@@ -226,7 +229,7 @@
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
           </span>
-          <span><b>4.7</b> on the App Store</span>
+          <span>Rated <b>4.7 out of 5</b> on the App&nbsp;Store</span>
         </div>
       </div>
       <div class="scanline rise d4">
@@ -286,7 +289,7 @@
   <section class="shell reviews">
     <div class="reviews-head reveal">
       <h2>People are loving Plantz</h2>
-      <span class="reviews-note"><b>4.7</b> on the App Store</span>
+      <span class="reviews-note">Rated <b>4.7 out of 5</b> on the App&nbsp;Store</span>
     </div>
     <div class="review-grid">
       <figure class="review reveal">
@@ -345,15 +348,23 @@
 </main>
 
 <div class="appbar" id="appbar">
-  <img src="/assets/icon-512.png" alt="" width="36" height="36">
+  <img src="/assets/icon-512.png" alt="" width="48" height="48">
   <div class="appbar-name">
-    <b>Plantz</b>
-    <span class="appbar-rating">
+    <b>Plantz: Plant, Tree &amp; Weed ID</b>
+    <span class="appbar-sub">Toxic, Edible &amp; Flower Scanner</span>
+    <span class="appbar-rating" aria-label="Rated 4.7 out of 5">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
-      4.7 · Free
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg>
+      4.7
     </span>
   </div>
-  <a class="get" href="https://apps.apple.com/app/id6739429047">Get</a>
+  <div class="appbar-cta">
+    <a class="get" href="https://apps.apple.com/app/id6739429047">Get</a>
+    <span class="appbar-iap">In-App Purchases</span>
+  </div>
 </div>
 
 <footer>
