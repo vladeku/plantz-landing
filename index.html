@@ -79,6 +79,7 @@
     background:var(--card);
     border:1px solid var(--line);
     border-radius:22px;
+    min-height:72px;
     padding:14px 16px;
     display:flex;
     align-items:center;
@@ -90,6 +91,7 @@
     background:#E3F0E9;display:grid;place-items:center;color:var(--teal);
   }
   .rc-names{flex:1;min-width:0}
+  .rc-name,.rc-latin{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .rc-name{font-size:17px;font-weight:750;letter-spacing:-.01em}
   .rc-latin{font-size:14px;color:var(--muted);font-style:italic}
   .rc-chip{
@@ -106,15 +108,15 @@
   .phone{
     width:min(320px,78vw);
     aspect-ratio:1320/2868;
-    border-radius:54px;
+    border-radius:43px;
     background:#101614;
     padding:9px;
     box-shadow:0 30px 60px rgba(13,43,36,.22),0 4px 14px rgba(13,43,36,.14);
     transform:rotate(-1.6deg);
   }
-  .phone img{width:100%;height:100%;object-fit:cover;border-radius:46px;display:block}
-  .phone.small{width:min(272px,72vw);border-radius:46px;padding:8px;transform:none}
-  .phone.small img{border-radius:39px}
+  .phone img{width:100%;height:100%;object-fit:cover;border-radius:34px;display:block}
+  .phone.small{width:min(272px,72vw);border-radius:38px;padding:8px;transform:none}
+  .phone.small img{border-radius:30px}
 
   .features{border-top:1px solid var(--line)}
   .feature{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;padding-block:52px}
@@ -147,10 +149,9 @@
   .review-who b{display:block;font-size:15px;font-weight:700}
   .review-who span{font-size:13px;color:var(--muted)}
 
-  .cta{border-top:1px solid var(--line);padding-block:64px;text-align:center}
+  .cta{border-top:1px solid var(--line);padding-block:64px}
   .cta h2{font-size:clamp(30px,4.4vw,46px);font-weight:800;letter-spacing:-.03em;margin-bottom:10px}
   .cta p{font-size:17px;color:var(--muted);margin-bottom:26px}
-  .cta .rating{justify-content:center}
 
   .cta-note{font-size:13px;color:var(--muted);margin-top:12px}
 
@@ -379,7 +380,7 @@
 <script>
   var states=[
     {name:"Oleander",latin:"Nerium oleander",chip:"Toxic",cls:"red"},
-    {name:"Monstera",latin:"Monstera deliciosa",chip:"Toxic to pets",cls:"amber"},
+    {name:"English Ivy",latin:"Hedera helix",chip:"Toxic to pets",cls:"amber"},
     {name:"Basil",latin:"Ocimum basilicum",chip:"Edible",cls:"teal"}
   ];
   var reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
