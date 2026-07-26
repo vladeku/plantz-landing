@@ -17,6 +17,7 @@
 <meta property="og:url" content="https://getplantz.app/">
 <meta property="og:image" content="https://getplantz.app/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" async onload="if((location.hostname==='getplantz.app'||location.search.indexOf('ampdev=1')>-1)&&window.amplitude){amplitude.init('63a834da571583bdac8b5595eafc6798',{serverZone:'US',transport:'beacon',autocapture:{attribution:true,pageViews:true,sessions:true,elementInteractions:false,formInteractions:false,fileDownloads:false}})}"></script>
 <style>
   :root{
     --paper:#F2F7F3;
@@ -438,14 +439,22 @@
     },3200);
   }
   var inTikTok=/musical_ly|Bytedance|TikTok/i.test(navigator.userAgent)||location.search.indexOf("tt=1")>-1;
+  function track(name,props){var a=window.amplitude;if(a&&a.track)a.track(name,props)}
+  document.querySelectorAll('a[href^="https://apps.apple.com"]').forEach(function(a){
+    a.addEventListener("click",function(){
+      var placement=a.closest(".appbar")?"sticky_bar":a.closest(".cta")?"footer_cta":"hero";
+      track("store_click",{placement:placement,in_tiktok:inTikTok});
+    });
+  });
   var veil=document.getElementById("ttveil");
-  document.getElementById("ttok").addEventListener("click",function(){veil.classList.remove("open")});
+  document.getElementById("ttok").addEventListener("click",function(){veil.classList.remove("open");track("tiktok_sheet_gotit")});
   veil.addEventListener("click",function(e){if(e.target===veil)veil.classList.remove("open")});
   if(inTikTok){
     document.querySelectorAll('a[href^="https://apps.apple.com"]').forEach(function(a){
       a.addEventListener("click",function(e){
         e.preventDefault();
         veil.classList.add("open");
+        track("tiktok_sheet_shown");
       });
     });
   }else if(/iPhone|iPad|iPod/.test(navigator.userAgent)){
