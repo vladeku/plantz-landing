@@ -118,6 +118,16 @@
   }
   .feature h2{font-size:clamp(28px,3.6vw,38px);font-weight:800;letter-spacing:-.025em;line-height:1.12;margin-bottom:14px}
   .feature p{font-size:17px;color:var(--muted);max-width:46ch}
+  .warn{
+    display:flex;gap:12px;align-items:flex-start;
+    margin-top:20px;padding:14px 16px;max-width:46ch;
+    background:#FCF3E4;border:1px solid #EBD7B4;border-radius:16px;
+  }
+  .warn-ico{flex:none;width:20px;height:20px;color:var(--amber);margin-top:1px}
+  .warn b{display:block;font-size:15px;font-weight:700;color:var(--ink);letter-spacing:-.01em;margin-bottom:6px}
+  .feature .warn p{font-size:13.5px;line-height:1.5;color:#5A5346;max-width:none}
+  .feature .warn p + p{margin-top:8px}
+  .warn a{color:var(--teal-deep);font-weight:650}
   .f-media{display:flex;justify-content:center}
 
   .reviews{border-top:1px solid var(--line);padding-block:56px}
@@ -293,7 +303,15 @@
       <div class="f-copy">
         <span class="eyebrow">Safety</span>
         <h2>Know before anyone touches it</h2>
-        <p>Every result shows toxicity for humans, cats and dogs, with the level and symptoms spelled out, never buried.</p>
+        <p>Results show toxicity for humans, cats and dogs, with the level and symptoms spelled out, never buried. When toxicity cannot be determined, Plantz says so instead of guessing.</p>
+        <div class="warn">
+          <svg class="warn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          <div>
+            <b>Do not eat or handle a plant based on AI identification alone.</b>
+            <p>Misidentification can be harmful or fatal. Confirm with a qualified botanist or a trusted field guide before any consumption. Plantz is an identification aid, not a medical or veterinary service.</p>
+            <p>If a person or a pet may have eaten an unknown plant, contact your local poison center or a vet right away. In the US: Poison Control <a href="tel:+18002221222">1-800-222-1222</a>, ASPCA Animal Poison Control <a href="tel:+18884264435">888-426-4435</a> (a consultation fee may apply).</p>
+          </div>
+        </div>
       </div>
       <div class="f-media">
         <img class="device feature-device" src="/assets/framed-03.webp" alt="Safety and allergens screen showing toxicity for humans, cats and dogs" width="720" height="1492" loading="lazy">
